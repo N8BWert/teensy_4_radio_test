@@ -1,0 +1,34 @@
+[package]
+name = "radio-test"
+version = "0.1.0"
+authors = ["nathaniel.wert <nathaniel.wert@kudelski.security.com>"]
+edition = "2021"
+
+[dependencies]
+cortex-m = "0.7"
+embedded-hal = "0.2"
+# Remove me if you don't want logging.
+log = "0.4"
+nrf24-rs = "0.1.1"
+teensy4-panic = "0.2"
+
+[dependencies.teensy4-bsp]
+version = "0.4"
+features = ["usb-logging", "rt"]
+
+[dependencies.rtic]
+version = "2.0.1"
+features = ["thumbv7-backend"]
+
+[dependencies.imxrt-ral]
+version = "0.5.1"
+features = ["imxrt1062"]
+
+[dependencies.imxrt-hal]
+version = "0.5.3"
+features = ["imxrt1060"]
+
+# Don't optimize build dependencies, like proc macros.
+# Helps with build times.
+[profile.release.build-override]
+opt-level = 0

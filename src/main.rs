@@ -28,7 +28,7 @@ mod app {
 
     use crate::motion_control::MotionControlCommand;
 
-    use embedded_nrf24l01::{Rx, NRF24L01};
+    use embedded_nrf24l01::{Rx, NRF24L01, ChangeModes};
     use embedded_nrf24l01::config::{NRF24L01Config, InterruptMask, RetransmitConfig, CrcMode, DataRate, PALevel, NRF24L01Configuration};
 
     const GPT_CLOCK_SOURCE: gpt::ClockSource = gpt::ClockSource::PeripheralClock;
@@ -105,6 +105,9 @@ mod app {
             Err(err) => panic!("Error Received for Radio Connection: {:?}", err),
             Ok(false) => panic!("Radio is not connected"),
             _ => log::info!("Radio Connected"),
+        }
+        if let Err(err) = radio.to_rx() {
+            log::info!("Unknown Error Occured Switching to Rx: {:?}", err);
         }
 
         let mut gpt1 = board_resources.gpt1;

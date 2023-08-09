@@ -20,13 +20,9 @@ features = ["usb-logging", "rt"]
 version = "2.0.1"
 features = ["thumbv7-backend"]
 
-[dependencies.imxrt-ral]
-version = "0.5.1"
-features = ["imxrt1062"]
-
-[dependencies.imxrt-hal]
-version = "0.5.3"
-features = ["imxrt1060"]
+[dependencies.rtic-monotonics]
+version = "1.0.0"
+features = ["cortex-m-systick"]
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.

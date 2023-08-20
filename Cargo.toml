@@ -9,8 +9,9 @@ cortex-m = "0.7"
 embedded-hal = "0.2"
 # Remove me if you don't want logging.
 log = "0.4"
-nrf24-rs = "0.1.1"
-teensy4-panic = "0.2"
+# embedded-nrf24l01 = { git = "https://github.com/N8BWert/embedded-nrf24l01.git" }
+# nrf24-rs = "0.1.1"
+nrf24l01 = { git = "https://github.com/maikelwever/nrf24l01.git" }
 
 [dependencies.teensy4-bsp]
 version = "0.4"
@@ -20,13 +21,18 @@ features = ["usb-logging", "rt"]
 version = "2.0.1"
 features = ["thumbv7-backend"]
 
-[dependencies.imxrt-ral]
-version = "0.5.1"
-features = ["imxrt1062"]
+[dependencies.rtic-monotonics]
+version = "1.0.0"
+features = ["cortex-m-systick"]
 
-[dependencies.imxrt-hal]
-version = "0.5.3"
-features = ["imxrt1060"]
+[dependencies.teensy4-panic]
+version = "0.2"
+features = ["log"]
+
+[workspace]
+members = [
+    "tools",
+]
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
